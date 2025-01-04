@@ -58,12 +58,12 @@ public class Hangman {
         ╩""",
     };
 
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final Random random = new Random();
+    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final Random RANDOM = new Random();
 
     private static final String GAME_STATUS_WIN = "ПОБЕДА";
     private static final String GAME_STATUS_LOSE = "ПОРАЖЕНИЕ";
-    private static final String GAME_STATE_NOT_FINISHED = "ИГРА НЕ ЗАКОНЧЕНА";
+    private static final String GAME_STATUS_NOT_FINISHED = "ИГРА НЕ ЗАКОНЧЕНА";
 
     public static void main(String[] args) {
         runGame();
@@ -87,14 +87,14 @@ public class Hangman {
         do {
             printMainMenu();
 
-            String userInput = scanner.nextLine();
+            String userInput = SCANNER.nextLine();
 
             if (userInput.equalsIgnoreCase("н")) {
                 String word = getRandomWord(wordList);
 
                 runGameRound(word);
             } else if (userInput.equalsIgnoreCase("в")) {
-                scanner.close();
+                SCANNER.close();
 
                 return;
             }
@@ -123,7 +123,7 @@ public class Hangman {
     }
 
     private static String getRandomWord(List<String> wordList) {
-        int index = random.nextInt(wordList.size());
+        int index = RANDOM.nextInt(wordList.size());
 
         return wordList.get(index);
     }
@@ -150,11 +150,11 @@ public class Hangman {
 
             gameStatus = checkGameStatus(errorsCount, guessedCount, word);
 
-            if (gameStatus.equals(GAME_STATE_NOT_FINISHED)) {
+            if (gameStatus.equals(GAME_STATUS_NOT_FINISHED)) {
                 System.out.println();
                 System.out.print("Буква: ");
 
-                String enteredLetter = scanner.nextLine();
+                String enteredLetter = SCANNER.nextLine();
 
                 if (isEnteredLetterValid(enteredLetter)) {
                     if (word.contains(enteredLetter)) {
@@ -232,6 +232,6 @@ public class Hangman {
             return GAME_STATUS_WIN;
         }
 
-        return GAME_STATE_NOT_FINISHED;
+        return GAME_STATUS_NOT_FINISHED;
     }
 }
