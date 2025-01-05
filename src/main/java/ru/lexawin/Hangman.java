@@ -154,12 +154,12 @@ public class Hangman {
                 System.out.println();
                 System.out.print("Буква: ");
 
-                String enteredLetter = SCANNER.nextLine();
+                String enteredLetter = SCANNER.nextLine().toLowerCase();
 
                 if (isEnteredLetterValid(enteredLetter)) {
-                    if (word.contains(enteredLetter)) {
+                    if (word.contains(enteredLetter) && maskedWord.indexOf(enteredLetter) == -1) {
                         guessedCount += openLetter(enteredLetter, word, maskedWord);
-                    } else {
+                    } else if (!word.contains(enteredLetter) && !wrongLetters.contains(enteredLetter)) {
                         errorsCount++;
                         wrongLetters.add(enteredLetter);
                     }
@@ -192,7 +192,7 @@ public class Hangman {
             return false;
         }
 
-        char character = enteredLetter.toLowerCase().charAt(0);
+        char character = enteredLetter.charAt(0);
 
         return character >= 'а' && character <= 'я' || character == 'ё';
     }
