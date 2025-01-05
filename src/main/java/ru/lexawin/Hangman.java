@@ -197,6 +197,13 @@ public class Hangman {
         return character >= 'а' && character <= 'я' || character == 'ё';
     }
 
+    /**
+     * Открывает букву в маскированном загаданном слове.
+     * @param enteredLetter - введенная буква
+     * @param word - загаданное слово
+     * @param maskedWord - маскированное загаданное слово
+     * @return - количество открытых букв
+     */
     private static int openLetter(String enteredLetter, String word, StringBuilder maskedWord) {
         int openCount = 0;
         int letterIndex = 0;
